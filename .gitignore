@@ -1,0 +1,6 @@
+# 중요한 키
+.env
+# 라이브러리
+.node_modules
+# vscode 올리는거 아님(버전이 다를수도 있음) 
+.vscode

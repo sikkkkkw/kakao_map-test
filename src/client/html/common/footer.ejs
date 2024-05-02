@@ -1,0 +1,53 @@
+<footer class="footer">
+    <ul>
+        <li>
+            <a href="/">
+                <i class="fas fa-home"></i>
+                <p>홈</p>
+            </a>
+        </li>
+        <li>
+            <a href="/introduce">
+                <i class="fas fa-book"></i>
+                <p>소개</p>
+            </a>
+        </li>
+        <li>
+            <a href="/course">
+                <i class="fas fa-road"></i>
+                <p>코스 안내</p>
+            </a>
+        </li>
+        <li>
+            <a href="/qr">
+                <i class="fas fa-qrcode"></i>
+                <p>QR</p>
+            </a>
+        </li>
+        <li>
+            <a href="/users">
+                <i class="fas fa-user-alt"></i>
+                <p>회원</p>
+            </a>
+        </li>
+    </ul>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 현재 페이지의 URL 경로를 가져옵니다.
+        const currentPath = window.location.pathname;
+
+        // 모든 footer 내의 a 태그를 선택합니다.
+        const links = document.querySelectorAll('.footer ul li a');
+
+        // 각 a 태그를 순회하면서 href 값이 현재 URL 경로와 일치하는지 확인합니다.
+        // forEach는 비동기방식
+        links.forEach((link) => {
+            if (link.getAttribute('href') === currentPath) {
+                // href 값이 현재 URL과 일치한다면 해당 a 태그의 부모 li에 'on' 클래스를 추가합니다.
+                link.parentElement.classList.add('on');
+            }
+        });
+    });
+</script>

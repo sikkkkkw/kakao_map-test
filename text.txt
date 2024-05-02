@@ -1,0 +1,47 @@
+<!-- 백엔드 역할 -->
+
+1.데이터 전송
+2.validation(유효성 검사),차단
+3.예외처리+로깅
+
+<!-- nodemon 앞에 -D가 들어간 이유(무거워서) -->
+
+npm i -D nodemon
+
+<!-- REST API란 -->
+
+예시(url 주소 뒤에 경로/user처럼)
+
+<!-- next사용하면 다음 안쓰면 컨트롤러 -->
+<!-- 인증인가(블랙리스트)-->
+
+app.use((req, res, next) => {
+console.log('통과합니다.');
+next();
+});
+
+<!-- 미들웨어 사이에 끼여서 사용가능-->
+
+const middleware = (req, res, next) => {
+console.log('하이');
+next();
+};
+
+app.get('/user', middleware, (req, res) => {
+// 비지니스 로직처리(아이디 확인)
+
+    // 데이터베이스 접근(데이터가져오기)
+    res.send('응답 옴');
+
+});
+
+1.데이터주기(주소 데이터:쿼리스트링) ?다음부터 데이터
+app.get('/user', middleware, (req, res) => {
+    const data = req.query; //http://localhost:8000/user?name=jaesik&pass=1233
+    console.log(data);
+    res.send('응답 옴');
+});
+
+npm i mysql2는 mysql드라이버
+
+fetct(web api 라이브러리 설치없이 가능) axios(제일좋음,프로그레스바, 속도빠름) ajax(안씀)

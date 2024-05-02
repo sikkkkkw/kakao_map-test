@@ -1,0 +1,47 @@
+/* login */
+.full-container { position: relative;  width: 100vw; height: 100vh; padding-bottom: 80px; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+.login-form { padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); width: 300px; }
+.login-form input[type="text"], .login-form input[type="password"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+.login-form .button-wrap { display: flex; align-items: center; justify-content: space-between;}
+.login-form .button-wrap button { padding: 10px 15px; background-color: #007BFF; border: none; color: white; border-radius: 5px; cursor: pointer; }
+.login-form .button-wrap button.join { background-color: #FF5733; }
+.kakao-login-button-wrap { width: 228px; height: 54px; margin-top: 25px; }
+.kakao-login-button-wrap img { width: 100%; height: 100%; }
+
+/* join */
+.join-form { padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); width: 300px; }
+.join-form input[type="text"], .join-form input[type="password"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+.join-form .button-wrap { display: flex; align-items: center; justify-content: flex-end;}
+.join-form .button-wrap button { padding: 10px 15px; background-color: #FF5733; border: none; color: white; border-radius: 5px; cursor: pointer; }
+
+/* main */
+.main-title { position: absolute; top: 10%; font-size: 30px; font-family: 'yg-jalnan', 'sans-serif'; }
+
+/* introduce */
+.introduce-title-wrap { color: #a1805f; text-align: center; margin: 0 auto; padding: 30px; font-size: 20px; font-family: 'Pretendard-ExtraBold' !important; letter-spacing: 2px; }
+.introduce-title-wrap p { font-size: 18px; }
+.introduce-content-wrap { font-family: "Pretendard-Medium"; padding: 0 40px; font-size: 18px; text-align: center; }
+.introduce-content-wrap p { margin-bottom: 10px;}
+
+/* course */
+.course-nav-ul { display: flex; flex-wrap: wrap; padding: 20px 0; margin-bottom: 20px; }
+.course-nav-ul .course { position: relative; width: 31%; text-align: center; border: 2px solid; border-radius: 30px; margin: 1%; padding: 1vh 0; font-weight: 500; border-color: rgb(221, 221, 221); background-color: rgb(238, 238, 238); font-family: "Pretendard-Medium"; }
+.course-nav-ul .course.on { border-color: #758cff; background-color: #758cff; color: #fff; }
+.course-nav-ul .course .mark-wrap { position: absolute;  width: 50px; height: 50px; right: 0; top: -10px; z-index: 15; }
+.course-nav-ul .course .mark-wrap img { width: 100%; height: 100%; }
+#location-map { width: 90%; height: 400px; margin:0 auto; }
+
+/* qr */
+.qr-container { width: 100%; padding-top: 30px;  }
+.wait-text { text-align: center;  font-weight: bold;  font-size:20px; }
+.wait-text.hidden { display: none; }
+.canvas-wrap { padding-top: 50px; display: flex; justify-content: center; align-items: center; }
+
+/* users */
+.users-container { display: flex; align-items: center; justify-content: center; flex-direction: column; height: 100%; }
+.users-container button { width: 300px; height: 50px; font-weight: bold; font-size: 18px;  cursor: pointer; padding: 10px 20px; border: none; border-radius: 5px; background-color: #007BFF; color: #ffffff; transition: background-color 0.2s; }
+.users-container button:hover { background-color: #0056b3; }
+.users-container .user-info { width: 300px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-weight: bold; }
+.users-container .user-info img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; }
+.users-container .logout-btn { background-color: #FF0000; margin-bottom: 50px; }
+.users-container .logout-btn:hover { background-color: #cc0000; }
