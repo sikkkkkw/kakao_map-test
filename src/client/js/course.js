@@ -110,7 +110,7 @@ const configLocation = () => {
             addMarker(new kakao.maps.LatLng(userLatitude, userLongitude));
             // 자기자신은 이동시키고
             if (clickCourse === 0) {
-                //걷는데 이동시키지마
+                //걷는데 지정된 장소는 이동시키지마
                 panTo(userLatitude, userLongitude);
             }
         });
