@@ -1,0 +1,21 @@
+<%- include('common/header.ejs') %>
+  <div class="container empty-background">
+    <nav class="nav">
+      <p class="title">용계역 여행</p>
+      <div class="sub-title">QR 인증</div>
+    </nav>  
+
+    <div class="content-container">
+      <div class="qr-container">
+        <p class="wait-text">화면을 인식중입니다.</p>
+      </div>  
+      <div class="flex-c-c canvas-wrap">
+        <canvas id="canvas" width="300" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+  <%- include('common/footer.ejs') %>
+  <script src="/js/library/jsQR.js"></script>
+  <script src="/js/qr.js"></script>
+  </body>
+</html>

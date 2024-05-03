@@ -45,3 +45,8 @@ app.get('/user', middleware, (req, res) => {
 npm i mysql2는 mysql드라이버
 
 fetct(web api 라이브러리 설치없이 가능) axios(제일좋음,프로그레스바, 속도빠름) ajax(안씀)
+
+로그인,회원가입 암호화(npm i bcrypt)
+
+
+jwb(npm i jsonwebtoken)

@@ -1,7 +1,18 @@
 import express from 'express';
-import { coursePage, introducePage, mainPage } from './controller/webcontroller.js';
+import {
+    coursePage,
+    introducePage,
+    joinPage,
+    loginPage,
+    mainPage,
+    qrPage,
+    userPage,
+} from './controller/webcontroller.js';
 import db from './config/db.js';
-import { getCourseList } from './controller/coursecontroller.js';
+import { getCourseList, qrCheck } from './controller/coursecontroller.js';
+import { joinUser, loginUser } from './controller/authcontroller.js';
+import { isAuth, neededAuth } from './middleware/auth.js';
+
 // JS Common JS(require), ECA(import)
 const app = express();
 const port = 8000;
@@ -30,7 +41,7 @@ const middleware = (req, res, next) => {
 };
 
 app.use((req, res, next) => {
-    console.log('통과합니다.');
+    // console.log('통과합니다.');
     next();
 });
 
@@ -38,8 +49,15 @@ app.use((req, res, next) => {
 // 리팩토링 - 기능x코드
 app.get('/', mainPage);
 // 인사페이지
+
+// webRouter
 app.get('/introduce', introducePage);
 app.get('/course', coursePage);
+app.get('/login', loginPage);
+app.get('/join', joinPage);
+app.get('/qr', qrPage);
+app.get('/users', userPage);
+
 app.post('/test', async (req, res) => {
     const data = req.body;
     const query = `INSERT INTO course (course_name,course_latitude,course_longitude,course_qr) VALUES (?,?,?,?)`;
@@ -55,7 +73,11 @@ app.get('/user', middleware, (req, res) => {
     res.send('응답 옴');
 });
 // apiRouter
-app.get('/api/course', getCourseList);
+app.get('/api/course', isAuth, getCourseList);
+app.post('/api/join', neededAuth, joinUser);
+app.post('/api/login', loginUser);
+// qr코드
+app.post('/api/course', qrCheck);
 
 app.listen(port, () => {
     console.info(`http://localhost:${port}`);
