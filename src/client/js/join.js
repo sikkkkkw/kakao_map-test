@@ -15,7 +15,7 @@ const joinFetch = async () => {
     const response = await fetch('/api/join', {
         method: 'POST',
         headers: {
-            'content-Type': 'application/json',
+            'Content-Type': 'application/json',
             Accept: 'application/json',
         },
         body: JSON.stringify({
