@@ -10,7 +10,7 @@ import {
 } from './controller/webcontroller.js';
 import db from './config/db.js';
 import { getCourseList, qrCheck } from './controller/coursecontroller.js';
-import { joinUser, loginUser } from './controller/authcontroller.js';
+import { joinUser, kakaoLogin, loginUser } from './controller/authcontroller.js';
 import { neededAuth, notNeededAuth } from './middleware/auth.js';
 
 // JS Common JS(require), ECA(import)
@@ -73,6 +73,7 @@ app.get('/user', middleware, (req, res) => {
     res.send('응답 옴');
 });
 // apiRouter
+app.post('/api/socials/kakao', kakaoLogin);
 app.get('/api/course', notNeededAuth, getCourseList);
 app.post('/api/join', neededAuth, joinUser);
 app.post('/api/login', loginUser);

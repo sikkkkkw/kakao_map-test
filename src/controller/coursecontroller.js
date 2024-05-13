@@ -8,7 +8,6 @@ export const getCourseList = async (req, res) => {
         const query =
             'SELECT c.*, uc.user_courses_no FROM course c LEFT JOIN users_course uc ON c.course_no = uc.course_no AND uc.user_no = ?';
         const result = await db.execute(query, [no]).then((result) => result[0]);
-        console.log(result);
         res.status(200).json({ status: 'success', massage: '코스 데이터 리스트', data: result });
     } catch (error) {
         console.log(error);

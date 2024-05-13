@@ -29,12 +29,12 @@ const loginFetch = async () => {
         // accessToken저장
         localStorage.setItem('accessToken', result.data.accessToken);
         // 알럿 창
-        msgAlert('bottom', '로그인 성공', 'success');
+        msgAlert('top', '로그인 성공', 'success');
         setTimeout(() => {
             window.location.href = '/';
         }, 1000);
     } else {
-        msgAlert('bottom', '로그인 실패하셧습니다.', 'error');
+        msgAlert('top', '로그인 실패하셧습니다.', 'error');
     }
 };
 
@@ -47,9 +47,9 @@ joinBtn.addEventListener('click', () => {
 const checkError = () => {
     const notFoundAccessTokenError = getParameterByName('error');
     if (notFoundAccessTokenError == 'not_found_access_token') {
-        msgAlert('bottom', '인증에 실패하였습니다.', 'error');
+        msgAlert('top', '인증에 실패하였습니다.', 'error');
     } else if (notFoundAccessTokenError == 'need_login') {
-        msgAlert('bottom', '로그인이 필요합니다.', 'error');
+        msgAlert('top', '로그인이 필요합니다.', 'error');
     }
     const cleanUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
     window.history.replaceState({}, document.title, cleanUrl);

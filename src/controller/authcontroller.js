@@ -50,3 +50,73 @@ export const loginUser = async (req, res) => {
     });
     // refresh Token
 };
+
+// 소셜로그인
+export const kakaoLogin = async (req, res) => {
+    const {
+        query: { code },
+    } = req;
+
+    const KAKAO_BASE_PATH = 'https://kauth.kakao.com/oauth/token';
+    const config = {
+        grant_type: 'authorization_code',
+        client_id: process.env.CLIENT_ID,
+        redirect_uri: process.env.REDIRECT_URI,
+        code,
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${KAKAO_BASE_PATH}?${params}`;
+    const response = await fetch(finalUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+    const tokenRequest = await response.json();
+
+    const { access_token } = tokenRequest;
+    if (access_token) {
+        const userResponse = await fetch('https://kapi.kakao.com/v2/user/me', {
+            headers: {
+                Authorization: `Bearer ${access_token}`,
+            },
+        });
+        const userData = await userResponse.json();
+        const {
+            properties: { nickname },
+            kakao_account: { email },
+        } = userData;
+
+        // 데이터베이스 연결 및 사용자 조회 또는 생성
+        try {
+            const conn = await pool.getConnection();
+            try {
+                const [user] = await conn.query('SELECT * FROM users WHERE user_email = ?', [email]);
+                if (user.length > 0) {
+                    // 사용자가 이미 존재하면 로그인 처리
+                    res.send({ result: true, user: user[0], isLogin: true, token: user[0].user_id });
+                } else {
+                    // 새 사용자 등록
+                    const userExamId = email.split('@')[0];
+                    const [newUser] = await conn.execute(
+                        'INSERT INTO users (user_id, user_name, user_email, user_provider, user_socialtype) VALUES (?, ?, ?, ?, "kakao")',
+                        [userExamId, nickname, email, 'Kakao']
+                    );
+                    res.send({
+                        result: true,
+                        isLogin: true,
+                        user: newUser,
+                        token: newUser.insertId,
+                        message: '회원가입 완료!',
+                    });
+                }
+            } finally {
+                conn.release();
+            }
+        } catch (error) {
+            res.status(500).send({ message: 'Database operation failed', error: error });
+        }
+    } else {
+        res.status(401).send({ message: 'Failed to authenticate with Kakao' });
+    }
+};

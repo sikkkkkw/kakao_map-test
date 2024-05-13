@@ -25,13 +25,13 @@ const courseCheckFetch = async (qrCode) => {
     const result = await response.json();
     console.log(result);
     if (result.status === 'success') {
-        msgAlert('botton', '방문완료', 'success');
+        msgAlert('top', '방문완료', 'success');
         setTimeout(() => {
             window.location.href = '/course';
         }, 2000);
         return;
     } else {
-        msgAlert('botton', result.message, 'success');
+        msgAlert('top', result.message, 'success');
     }
     setTimeout(startScan, 3000);
 };
@@ -62,7 +62,7 @@ function startScan() {
         })
         .catch(function (err) {
             console.error('Error accessing the camera', err);
-            msgAlert('bottom', '카메라 접근에 실패했습니다.', 'error');
+            msgAlert('top', '카메라 접근에 실패했습니다.', 'error');
         });
 
     // 각 프레임에서 호출되어 QR 코드를 스캔하는 함수
